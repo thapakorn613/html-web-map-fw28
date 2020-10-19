@@ -43,12 +43,12 @@ var pin = imageTemplate.createChild(am4plugins_bullets.PinBullet);
 
 // Configuring pin appearance
 pin.background.fill = color1;
-pin.background.pointerBaseWidth = 1;
+pin.background.pointerBaseWidth = 5;
 pin.background.pointerLength = 250;
 pin.background.propertyFields.pointerLength = "length";
 pin.circle.fill = pin.background.fill;
 pin.label = new am4core.Label();
-pin.label.text = "{value}%";
+pin.label.text = "{value}";
 pin.label.fill = color1.alternate;
 
 var label = pin.createChild(am4core.Label);
@@ -90,31 +90,53 @@ imageSeries.heatRules.push({
 // Pin data
 imageSeries.data = [
   {
-    latitude: 40,
-    longitude: -101,
-    value: 12,
-    title: "United\nStates",
+    latitude: 31.178959,
+    longitude: 29.8930766,
+    value: 1,
+    title: "Catacombs of Kom El Shoqafa",
+    length: 50,
+  },
+  {
+    latitude: 51.1778865,
+    longitude: -1.8279531,
+    value: 2,
+    title: "Stonehenge",
     length: 150,
   },
   {
-    latitude: 0,
-    longitude: 25,
-    value: 5,
-    title: "Africa",
-    length: 40,
-  },
-  {
-    latitude: 43,
-    longitude: 5,
-    value: 15,
-    title: "European\nUnion",
-    length: 100,
-  },
-  {
-    latitude: 40,
-    longitude: 95,
-    value: 8,
-    title: "Asia",
+    latitude: 32.0093905,
+    longitude: 118.7811543,
+    value: 3,
+    title: "Porcelain Tower of Nanjing",
     length: 80,
+  },
+  {
+    latitude: 41.008587,
+    longitude: 28.9779863,
+    value: 4,
+    title: "Hagia Sophia",
+    length: 150,
+  },
+  {
+    latitude: 43.7229559,
+    longitude: 10.3944083,
+    value: 5,
+    title: "Leaning Tower of Pisa",
+    length: 220,
+  },
+  {
+    latitude: 41.8902142,
+    longitude: 12.4900422,
+    value: 6,
+    title: "Colosseum",
+    length: 80,
+  },
+  
+  {
+    latitude: 40.4319118,
+    longitude: 116.5681862,
+    value: 7,
+    title: "Great Wall of China",
+    length: 150,
   },
 ];
