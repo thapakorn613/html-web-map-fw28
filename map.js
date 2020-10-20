@@ -30,12 +30,12 @@ polygonSeries.useGeodata = true;
 // Configure series
 var polygonTemplate = polygonSeries.mapPolygons.template;
 polygonTemplate.fill = am4core.color("#f8f8f8");
-
+polygonTemplate.events.on("hit", function (ev) {
+  ev.target.series.chart.zoomToMapObject(ev.target);
+})
 /* Create hover state and set alternative fill color */
 // var hs = polygonTemplate.states.create("hover");
 // hs.properties.fill = am4core.color("#367B25");
-
-
 
 // Add shadow
 var shadow = polygonSeries.filters.push(new am4core.DropShadowFilter());
@@ -46,14 +46,14 @@ shadow.blur = 0;
 // var imageSeries = chart.series.push(new am4maps.MapImageSeries());
 var imageSeries = chart.series.push(new am4maps.MapImageSeries());
 var imageTemplate = imageSeries.mapImages.template;
-var circle = imageTemplate.createChild(am4core.Circle);
+
 imageTemplate.propertyFields.longitude = "longitude";
 imageTemplate.propertyFields.latitude = "latitude";
 imageTemplate.nonScaling = true;
 
-
 // Creating a pin bullet
 var pin = imageTemplate.createChild(am4plugins_bullets.PinBullet);
+var marker = imageTemplate.createChild(am4core.Image);
 
 function startupPage() {
   changePin(0)
@@ -78,14 +78,23 @@ function changePin(mode) {
     wonder5.innerHTML = "Mausoleum at Halicarnassus";
     wonder6.innerHTML = "Colossus of Rhodes";
     wonder7.innerHTML = "The Pharos Lighthouse of Alexandria";
-    pin.background.fill = color1;
-    pin.background.pointerBaseWidth = 5;
-    pin.background.pointerLength = 250;
-    pin.background.propertyFields.pointerLength = "length";
-    pin.circle.fill = pin.background.fill;
-    pin.label = new am4core.Label();
-    pin.label.text = "o";
-    pin.label.fill = color1.alternate;
+
+    // pin.background.fill = color1;
+    // pin.background.pointerBaseWidth = 5;
+    // pin.background.pointerLength = 250;
+    // pin.background.propertyFields.pointerLength = "length";
+    // pin.circle.fill = pin.background.fill;
+    // pin.label = new am4core.Label();
+    // pin.label.text = "o";
+    // pin.label.fill = color1.alternate;
+    
+    marker.width = 100;
+    marker.height = 100;
+    marker.nonScaling = false;
+    marker.horizontalCenter = "middle";
+    marker.verticalCenter = "middle";
+    marker.propertyFields.href = "flag";
+    
     var label = pin.createChild(am4core.Label);
     label.text = "{title}";
     label.fontWeight = "bold";
@@ -93,7 +102,7 @@ function changePin(mode) {
     label.verticalCenter = "middle";
     label.fill = color1;
     label.adapter.add("dy", function (dy) {
-      return (20 + dy) * -1;
+      return (30 + dy) * -1;
     });
     imageSeries.heatRules.push({
       target: pin.background,
@@ -120,52 +129,58 @@ function changePin(mode) {
       {
         latitude: 29.9792345,
         longitude: 31.1320132,
-        value: 2,
+        // value: 2,
         title: "Great Pyramid of Giza",
         name: "United States",
-        length: 20,
+        length: 50,
+        flag: "./src/images/old/o1.jpeg"
       },
       {
         latitude: 36.169219,
         longitude: -122.647161,
-        value: 2,
+        // value: 2,
         title: "Hanging Gardens of Babylon",
-        length: 150,
+        length: 50,
+        flag: "./src/images/old/o2.jpg"
       },
       {
         latitude: 37.9493643,
         longitude: 27.3616675,
-        value: 2,
+        // value: 2,
         title: "Temple of Artemis at Ephesus",
-        length: 250,
+        length: 50,
+        flag: "./src/images/old/o3.jpg"
       },
       {
         latitude: 37.6382058,
         longitude: 21.6278582,
-        value: 2,
+        // value: 2,
         title: "Statue of Zeus at Olympia",
-        length: 190,
+        length: 50,
+        flag: "./src/images/old/o4.jpg"
+        // flag: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/pin_france.png"
       },
       {
         latitude: 37.0378917,
         longitude: 27.4219277,
-        value: 2,
+        // value: 2,
         title: "Mausoleum at Halicarnassus",
-        length: 140,
+        length: 50,
+        flag: "./src/images/old/o5.jpg"
       },
       {
         latitude: 36.4561964,
         longitude: 28.2187341,
-        value: 2,
         title: "Colossus of Rhodes",
-        length: 90,
+        length: 50,
+        flag: "./src/images/old/o6.jpg"
       },
       {
         latitude: 31.2243285,
         longitude: 29.8147986,
-        value: 2,
         title: "The Pharos Lighthouse of Alexandria",
-        length: 70,
+        length: 50,
+        flag: "./src/images/old/o7.jpg"
       },
     ];
   }
@@ -187,14 +202,23 @@ function changePin(mode) {
     wonder5.innerHTML = "Leaning Tower of Pisa";
     wonder6.innerHTML = "Colosseum";
     wonder7.innerHTML = "Great Wall of China";
-    pin.background.fill = color2;
-    pin.background.pointerBaseWidth = 5;
-    pin.background.pointerLength = 250;
-    pin.background.propertyFields.pointerLength = "length";
-    pin.circle.fill = pin.background.fill;
-    pin.label = new am4core.Label();
-    pin.label.text = "m";
-    pin.label.fill = color2.alternate;
+    
+    // pin.background.fill = color2;
+    // pin.background.pointerBaseWidth = 5;
+    // pin.background.pointerLength = 250;
+    // pin.background.propertyFields.pointerLength = "length";
+    // pin.circle.fill = pin.background.fill;
+    // pin.label = new am4core.Label();
+    // pin.label.text = "m";
+    // pin.label.fill = color2.alternate;
+
+    marker.width = 100;
+    marker.height = 100;
+    marker.nonScaling = false;
+    marker.horizontalCenter = "middle";
+    marker.verticalCenter = "middle";
+    marker.propertyFields.href = "flag";
+
     var label = pin.createChild(am4core.Label);
     label.text = "{title}";
     label.fontWeight = "bold";
@@ -202,13 +226,13 @@ function changePin(mode) {
     label.verticalCenter = "middle";
     label.fill = color2;
     label.adapter.add("dy", function (dy) {
-      return (20 + dy) * -1;
+      return (30 + dy) * -1;
     });
     imageSeries.heatRules.push({
       target: pin.background,
       property: "radius",
-      min: 20,
-      max: 30,
+      min: 10,
+      max: 10,
       dataField: "value",
     });
     imageSeries.heatRules.push({
@@ -229,52 +253,58 @@ function changePin(mode) {
       {
         latitude: 31.178959,
         longitude: 29.8930766,
-        value: 2,
+        // value: 2,
         title: "Catacombs of Kom El Shoqafa",
         length: 50,
+        flag: "./src/images/mid/m1.jpg"
       },
       {
         latitude: 51.1778865,
         longitude: -1.8279531,
-        value: 2,
+        // value: 2,
         title: "Stonehenge",
-        length: 150,
+        length: 50,
+        flag: "./src/images/mid/m2.jpg"
       },
       {
         latitude: 32.0093905,
         longitude: 118.7811543,
-        value: 2,
+        // value: 2,
         title: "Porcelain Tower of Nanjing",
-        length: 80,
+        length: 50,
+        flag: "./src/images/mid/m3.jpg"
       },
       {
         latitude: 41.008587,
         longitude: 28.9779863,
-        value: 2,
+        // value: 2,
         title: "Hagia Sophia",
-        length: 150,
+        length: 50,
+        flag: "./src/images/mid/m4.jpg"
       },
       {
         latitude: 43.7229559,
         longitude: 10.3944083,
-        value: 2,
+        // value: 2,
         title: "Leaning Tower of Pisa",
-        length: 220,
+        length: 50,
+        flag: "./src/images/mid/m5.jpg"
       },
       {
         latitude: 41.8902142,
         longitude: 12.4900422,
-        value: 2,
+        // value: 2,
         title: "Colosseum",
-        length: 80,
+        length: 50,
+        flag: "./src/images/mid/m6.jpg"
       },
-
       {
         latitude: 40.4319118,
         longitude: 116.5681862,
-        value: 2,
+        // value: 2,
         title: "Great Wall of China",
-        length: 150,
+        length: 50,
+        flag: "./src/images/mid/m7.jpg"
       },
     ];
   }
@@ -296,14 +326,24 @@ function changePin(mode) {
     wonder5.innerHTML = "Petra";
     wonder6.innerHTML = "Taj Mahal";
     wonder7.innerHTML = "Colosseum";
-    pin.background.fill = color3;
-    pin.background.pointerBaseWidth = 5;
-    pin.background.pointerLength = 250;
-    pin.background.propertyFields.pointerLength = "length";
-    pin.circle.fill = pin.background.fill;
-    pin.label = new am4core.Label();
-    pin.label.text = "n";
-    pin.label.fill = color3.alternate;
+
+    // pin.background.fill = color3;
+    // pin.background.pointerBaseWidth = 5;
+    // pin.background.pointerLength = 250;
+    // pin.background.propertyFields.pointerLength = "length";
+    // pin.circle.fill = pin.background.fill;
+    // pin.label = new am4core.Label();
+    // pin.label.text = "n";
+    // pin.label.fill = color3.alternate;
+
+    marker.width = 100;
+    marker.height = 100;
+    marker.nonScaling = false;
+    marker.horizontalCenter = "middle";
+    marker.verticalCenter = "middle";
+    marker.propertyFields.href = "flag";
+
+
     var label = pin.createChild(am4core.Label);
     label.text = "{title}";
     label.fontWeight = "bold";
@@ -311,13 +351,13 @@ function changePin(mode) {
     label.verticalCenter = "middle";
     label.fill = color3;
     label.adapter.add("dy", function (dy) {
-      return (20 + dy) * -1;
+      return (30 + dy) * -1;
     });
     imageSeries.heatRules.push({
       target: pin.background,
       property: "radius",
-      min: 20,
-      max: 30,
+      min: 5,
+      max: 10,
       dataField: "value",
     });
     imageSeries.heatRules.push({
@@ -332,66 +372,71 @@ function changePin(mode) {
       property: "paddingBottom",
       min: 0,
       max: 10,
-      dataField: "value",
+      dataField: "value", 
     });
+
     imageSeries.data = [
       {
         latitude: 20.6828175,
         longitude: -88.5728543,
-        value: 2,
         title: "Chichen Itza",
+        // value: 2,
         length: 50,
+        flag: "./src/images/new/n1.JPEG"
       },
       {
         latitude: -22.951911,
         longitude: -43.2126759,
-        value: 2,
         title: "Christ the Redeemer",
-        length: 150,
+        // value: 2,
+        length: 50,
+        flag: "./src/images/new/n2.jpg"
       },
       {
         latitude: -13.163136,
         longitude: -72.5471516,
-        value: 2,
         title: "Machu Picchu",
-        length: 80,
+        // value: 2,
+        length: 50,
+        flag: "./src/images/new/n3.jpg"
       },
       {
         latitude: 40.4319118,
         longitude: 116.5681862,
-        value: 2,
         title: "Great Wall of China",
-        length: 150,
+        // value: 2,
+        length: 50,
+        flag: "./src/images/new/n4.jpg"
       },
       {
         latitude: 30.328459,
         longitude: 35.4421735,
-        value: 2,
         title: "Petra",
-        length: 220,
+        // value: 2,
+        length: 50,
+        flag: "./src/images/new/n5.jpg"
       },
       {
         latitude: 23.2341868,
         longitude: 80.331867,
-        value: 2,
         title: "Taj Mahal",
-        length: 80,
+        // value: 2,
+        length: 50,
+        flag: "./src/images/new/n6.JPEG"
       },
-
       {
         latitude: 41.8902142,
         longitude: 12.4900422,
-        value: 2,
         title: "Colosseum",
-        length: 150,
+        // value: 2,
+        length: 50,
+        flag: "./src/images/new/n7.jpg"
       },
     ];
   }
 }
 
-
 function getInfo(number) {
-
   var textBufferDetail = {
     "old": {
       "o1": {
