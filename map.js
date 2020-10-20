@@ -30,9 +30,15 @@ polygonSeries.useGeodata = true;
 // Configure series
 var polygonTemplate = polygonSeries.mapPolygons.template;
 polygonTemplate.fill = am4core.color("#f8f8f8");
+// polygonTemplate.events.on("hit", function (ev) {
+//   ev.target.series.chart.zoomToMapObject(ev.target);
+// })
 polygonTemplate.events.on("hit", function (ev) {
-  ev.target.series.chart.zoomToMapObject(ev.target);
-})
+  chart.closeAllPopups();
+  chart.openPopup("We clicked on <strong>" + ev.target.dataItem.dataContext.name + "</strong>");
+});
+
+
 /* Create hover state and set alternative fill color */
 // var hs = polygonTemplate.states.create("hover");
 // hs.properties.fill = am4core.color("#367B25");
@@ -87,14 +93,14 @@ function changePin(mode) {
     // pin.label = new am4core.Label();
     // pin.label.text = "o";
     // pin.label.fill = color1.alternate;
-    
+
     marker.width = 100;
     marker.height = 100;
     marker.nonScaling = false;
     marker.horizontalCenter = "middle";
     marker.verticalCenter = "middle";
     marker.propertyFields.href = "flag";
-    
+
     var label = pin.createChild(am4core.Label);
     label.text = "{title}";
     label.fontWeight = "bold";
@@ -202,7 +208,7 @@ function changePin(mode) {
     wonder5.innerHTML = "Leaning Tower of Pisa";
     wonder6.innerHTML = "Colosseum";
     wonder7.innerHTML = "Great Wall of China";
-    
+
     // pin.background.fill = color2;
     // pin.background.pointerBaseWidth = 5;
     // pin.background.pointerLength = 250;
@@ -343,6 +349,7 @@ function changePin(mode) {
     marker.verticalCenter = "middle";
     marker.propertyFields.href = "flag";
 
+    
 
     var label = pin.createChild(am4core.Label);
     label.text = "{title}";
@@ -372,7 +379,7 @@ function changePin(mode) {
       property: "paddingBottom",
       min: 0,
       max: 10,
-      dataField: "value", 
+      dataField: "value",
     });
 
     imageSeries.data = [
@@ -433,6 +440,11 @@ function changePin(mode) {
         flag: "./src/images/new/n7.jpg"
       },
     ];
+    marker.events.on("hit", function (ev) {
+      chart.closeAllPopups();
+      chart.openPopup("We clicked on <strong>"+ ev.target.dataItem.dataContext.title +"</strong><br><h5></h5>");
+      // ev.target.series.chart.zoomToMapObject(ev.target)
+    });
   }
 }
 
