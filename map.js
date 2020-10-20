@@ -101,15 +101,15 @@ function changePin(mode) {
     marker.verticalCenter = "middle";
     marker.propertyFields.href = "flag";
 
-    var label = pin.createChild(am4core.Label);
-    label.text = "{title}";
-    label.fontWeight = "bold";
-    label.propertyFields.dy = "length";
-    label.verticalCenter = "middle";
-    label.fill = color1;
-    label.adapter.add("dy", function (dy) {
-      return (30 + dy) * -1;
-    });
+    // var label = pin.createChild(am4core.Label);
+    // label.text = "{title}";
+    // label.fontWeight = "bold";
+    // label.propertyFields.dy = "length";
+    // label.verticalCenter = "middle";
+    // label.fill = color1;
+    // label.adapter.add("dy", function (dy) {
+    //   return (30 + dy) * -1;
+    // });
     imageSeries.heatRules.push({
       target: pin.background,
       property: "radius",
@@ -118,14 +118,14 @@ function changePin(mode) {
       dataField: "value",
     });
     imageSeries.heatRules.push({
-      target: label,
+      // target: label,
       property: "dx",
       min: 30,
       max: 40,
       dataField: "value",
     });
     imageSeries.heatRules.push({
-      target: label,
+      // target: label,
       property: "paddingBottom",
       min: 0,
       max: 10,
@@ -225,15 +225,15 @@ function changePin(mode) {
     marker.verticalCenter = "middle";
     marker.propertyFields.href = "flag";
 
-    var label = pin.createChild(am4core.Label);
-    label.text = "{title}";
-    label.fontWeight = "bold";
-    label.propertyFields.dy = "length";
-    label.verticalCenter = "middle";
-    label.fill = color2;
-    label.adapter.add("dy", function (dy) {
-      return (30 + dy) * -1;
-    });
+    // var label = pin.createChild(am4core.Label);
+    // label.text = "{title}";
+    // label.fontWeight = "bold";
+    // label.propertyFields.dy = "length";
+    // label.verticalCenter = "middle";
+    // label.fill = color2;
+    // label.adapter.add("dy", function (dy) {
+    //   return (30 + dy) * -1;
+    // });
     imageSeries.heatRules.push({
       target: pin.background,
       property: "radius",
@@ -242,14 +242,14 @@ function changePin(mode) {
       dataField: "value",
     });
     imageSeries.heatRules.push({
-      target: label,
+      // target: label,
       property: "dx",
       min: 30,
       max: 40,
       dataField: "value",
     });
     imageSeries.heatRules.push({
-      target: label,
+      // target: label,
       property: "paddingBottom",
       min: 0,
       max: 10,
@@ -349,17 +349,15 @@ function changePin(mode) {
     marker.verticalCenter = "middle";
     marker.propertyFields.href = "flag";
 
-    
-
-    var label = pin.createChild(am4core.Label);
-    label.text = "{title}";
-    label.fontWeight = "bold";
-    label.propertyFields.dy = "length";
-    label.verticalCenter = "middle";
-    label.fill = color3;
-    label.adapter.add("dy", function (dy) {
-      return (30 + dy) * -1;
-    });
+    // var label = pin.createChild(am4core.Label);
+    // label.text = "{title}";
+    // label.fontWeight = "bold";
+    // label.propertyFields.dy = "length";
+    // label.verticalCenter = "middle";
+    // label.fill = color3;
+    // label.adapter.add("dy", function (dy) {
+    //   return (30 + dy) * -1;
+    // });
     imageSeries.heatRules.push({
       target: pin.background,
       property: "radius",
@@ -368,14 +366,14 @@ function changePin(mode) {
       dataField: "value",
     });
     imageSeries.heatRules.push({
-      target: label,
+      // target: label,
       property: "dx",
       min: 30,
       max: 40,
       dataField: "value",
     });
     imageSeries.heatRules.push({
-      target: label,
+      // target: label,
       property: "paddingBottom",
       min: 0,
       max: 10,
